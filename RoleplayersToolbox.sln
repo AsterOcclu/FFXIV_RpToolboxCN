@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoleplayersToolbox", "RoleplayersToolbox\RoleplayersToolbox.csproj", "{EE70A649-AAD3-485E-A1FA-234A192461DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release Official|Any CPU = Release Official|Any CPU
+		Release Illegal|Any CPU = Release Illegal|Any CPU
+		Debug Official|Any CPU = Debug Official|Any CPU
+		Debug Illegal|Any CPU = Debug Illegal|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE70A649-AAD3-485E-A1FA-234A192461DF}.Release Official|Any CPU.ActiveCfg = Release Official|Any CPU
+		{EE70A649-AAD3-485E-A1FA-234A192461DF}.Release Official|Any CPU.Build.0 = Release Official|Any CPU
+		{EE70A649-AAD3-485E-A1FA-234A192461DF}.Release Illegal|Any CPU.ActiveCfg = Release Illegal|Any CPU
+		{EE70A649-AAD3-485E-A1FA-234A192461DF}.Release Illegal|Any CPU.Build.0 = Release Illegal|Any CPU
+		{EE70A649-AAD3-485E-A1FA-234A192461DF}.Debug Official|Any CPU.ActiveCfg = Debug Official|Any CPU
+		{EE70A649-AAD3-485E-A1FA-234A192461DF}.Debug Official|Any CPU.Build.0 = Debug Official|Any CPU
+		{EE70A649-AAD3-485E-A1FA-234A192461DF}.Debug Illegal|Any CPU.ActiveCfg = Debug Illegal|Any CPU
+		{EE70A649-AAD3-485E-A1FA-234A192461DF}.Debug Illegal|Any CPU.Build.0 = Debug Illegal|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net5-windows</TargetFramework>
+        <Version>0.3.2.1</Version>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Configurations>Release Official;Release Illegal;Debug Official;Debug Illegal</Configurations>
+        <Platforms>AnyCPU</Platforms>
+        <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <OutputPath>C:\Games\Plugins\RPToolboxCN\</OutputPath>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release Official' ">
+        <DefineConstants>TRACE;RELEASE;</DefineConstants>
+        <Optimize>true</Optimize>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release Illegal' ">
+        <DefineConstants>TRACE;RELEASE;ILLEGAL</DefineConstants>
+        <Optimize>true</Optimize>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug Official' ">
+        <DefineConstants>TRACE;DEBUG;</DefineConstants>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug Illegal' ">
+        <DefineConstants>TRACE;DEBUG;ILLEGAL;</DefineConstants>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <DalamudLibPath>$(AppData)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Reference Include="Dalamud">
+            <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="FFXIVClientStructs">
+            <HintPath>$(DalamudLibPath)FFXIVClientStructs.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="ImGui.NET">
+            <HintPath>$(DalamudLibPath)ImGui.NET.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="ImGuiScene">
+            <HintPath>$(DalamudLibPath)ImGuiScene.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Lumina">
+            <HintPath>$(DalamudLibPath)Lumina.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Lumina.Excel">
+            <HintPath>$(DalamudLibPath)Lumina.Excel.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="DalamudPackager" Version="2.1.4"/>
+        <PackageReference Include="F23.StringSimilarity" Version="4.1.0"/>
+        <PackageReference Include="XivCommon" Version="3.2.0"/>
+    </ItemGroup>
+</Project>

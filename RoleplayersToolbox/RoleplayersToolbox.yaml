@@ -1,0 +1,13 @@
+name: The Roleplayer's Toolbox
+author: ascclemens
+description: |-
+  专为Roleplay玩家制作的工具集。
+
+  - 在招募板的店面信息上右键，或使用 /go 命令可以设定目的地，且获得最近的传送路径与导航提示信息。
+  - 允许左键或右键单击快速查看玩家信息。
+  - 可以锁定当前目标，防止情感动作或者宏因丢失目标被错误使用。
+  - 可以把任何『已解锁』的情感动作防止在热键栏，比如『睡大街』『椅子坐』。
+  - 提供 /emoteid 命令执行任意『已解锁』的情感动作。
+  - 可以阻止在床边使用 /打盹 命令时自动入睡（只瞌睡、不躺下）。
+
+repo_url: https://github.com/AsterOcclu/FFXIV_RpToolboxCN
