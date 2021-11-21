@@ -140,7 +140,7 @@ namespace RoleplayersToolbox {
                 }
             }
             var worlds = new List<World>();
-            foreach (var item in WorldInfo.DataManager.GetExcelSheet<World>()!) {
+            foreach (var item in plugin.DataManager.GetExcelSheet<World>()!) {
                 if (item.DataCenter.Row == world.DataCenter.Row && item.IsPublic) {
                     worlds.Add(item);
                 }
