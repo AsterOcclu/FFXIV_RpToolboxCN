@@ -123,15 +123,21 @@ namespace RoleplayersToolbox.Tools.Housing {
 
             var world = this.Destination.World;
             if (ImGui.BeginCombo("服务器", world?.Name?.ToString() ?? string.Empty)) {
-                var homeWorld = this.Plugin.ClientState.LocalPlayer?.HomeWorld;
-                var allWorlds = ExtraWorld.GetAllWorldsInSameDc(homeWorld!.GameData, this.Plugin);
-                foreach (var item in allWorlds) {
-                    if (!ImGui.Selectable(item.Name.ToString())) {
+                var dataCentre = this.Plugin.ClientState.LocalPlayer?.HomeWorld.GameData.DataCenter?.Row;
+
+                foreach (var availWorld in this.Plugin.DataManager.GetExcelSheet<World>()!) {
+                    if (availWorld.DataCenter.Row != dataCentre || !availWorld.IsPublic) {
                         continue;
                     }
-                    this.Destination.World = item;
+
+                    if (!ImGui.Selectable(availWorld.Name.ToString())) {
+                        continue;
+                    }
+
+                    this.Destination.World = availWorld;
                     anyChanged = true;
                 }
+
                 ImGui.EndCombo();
             }
 
@@ -191,8 +197,8 @@ namespace RoleplayersToolbox.Tools.Housing {
             if (player == null) {
                 return;
             }
-            var dcRow = ExtraWorld.GetDCRowByWorld(player.HomeWorld.GameData);
-            this.Destination = InfoExtractor.Extract(arguments, dcRow, this.Plugin.DataManager, this.Info);
+
+            this.Destination = InfoExtractor.Extract(arguments, player.HomeWorld.GameData.DataCenter.Row, this.Plugin.DataManager, this.Info);
         }
 
         private void OnBookmarksCommand(string command, string arguments) {
@@ -220,9 +226,9 @@ namespace RoleplayersToolbox.Tools.Housing {
             if (listing == null) {
                 return;
             }
-            var dcRow = ExtraWorld.GetDCRowByWorld(listing.World.Value);
+
             this.ClearFlag();
-            this.Destination = InfoExtractor.Extract(listing.Description.TextValue, dcRow, this.Plugin.DataManager, this.Info);
+            this.Destination = InfoExtractor.Extract(listing.Description.TextValue, listing.World.Value.DataCenter.Row, this.Plugin.DataManager, this.Info);
         }
 
         private void AddBookmark(ContextMenuItemSelectedArgs args) {
@@ -230,8 +236,7 @@ namespace RoleplayersToolbox.Tools.Housing {
             if (listing == null) {
                 return;
             }
-            var dcRow = ExtraWorld.GetDCRowByWorld(listing.World.Value);
-            var dest = InfoExtractor.Extract(listing.Description.TextValue, dcRow, this.Plugin.DataManager, this.Info);
+            var dest = InfoExtractor.Extract(listing.Description.TextValue, listing.World.Value.DataCenter.Row, this.Plugin.DataManager, this.Info);
             this.BookmarksUi.Editing = (new Bookmark(string.Empty) {
                 Name = listing.Name + " : " + listing.Description.TextValue,
                 WorldId = dest.World?.RowId ?? 0,

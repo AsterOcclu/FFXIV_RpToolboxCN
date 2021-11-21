@@ -1,4 +1,8 @@
 using System.Collections.Generic;
+using Dalamud.Data;
+using Lumina.Excel.GeneratedSheets;
+using Lumina.Text;
+using System.Linq;
 
 namespace Utils4CN
 {
@@ -132,6 +136,20 @@ namespace Utils4CN
             {1043, new MyWorld(1043, "紫水栈桥", 3)},
         };
 
+
+        public static World[] GetAllWorldsByDcRow(uint dcRow, DataManager dataManager) {
+            var gameWorlds = dataManager.GetExcelSheet<World>()!;
+            DataCenter? dc;
+            var worlds = new List<World>();
+            if (DataCenterMap.TryGetValue(dcRow, out dc)) {
+                foreach (var wId in dc.WorldIds) {
+                    var world = gameWorlds.GetRow(wId)!;
+                    worlds.Add(world);
+                }
+            }
+            return worlds.ToArray();
+            // return gameWorlds.Where(w => w.IsPublic && w.DataCenter.Value?.RowId == dcRow).ToArray();
+        }
 
     }
 }

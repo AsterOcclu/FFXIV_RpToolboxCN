@@ -155,14 +155,20 @@ namespace RoleplayersToolbox.Tools.Housing {
                 ? null
                 : this.Plugin.DataManager.GetExcelSheet<World>()!.GetRow(bookmark.WorldId);
             if (ImGui.BeginCombo("服务器", world?.Name?.ToString() ?? string.Empty)) {
-                var homeWorld = this.Plugin.ClientState.LocalPlayer?.HomeWorld;
-                var allWorlds = ExtraWorld.GetAllWorldsInSameDc(homeWorld!.GameData, this.Plugin);
-                foreach (var item in allWorlds) {
-                    if (!ImGui.Selectable(item.Name.ToString())) {
+                var dataCentre = this.Plugin.ClientState.LocalPlayer?.HomeWorld?.GameData?.DataCenter?.Row;
+
+                foreach (var availWorld in this.Plugin.DataManager.GetExcelSheet<World>()!) {
+                    if (availWorld.DataCenter.Row != dataCentre || !availWorld.IsPublic) {
                         continue;
                     }
-                    bookmark.WorldId = item.RowId;
+
+                    if (!ImGui.Selectable(availWorld.Name.ToString())) {
+                        continue;
+                    }
+
+                    bookmark.WorldId = availWorld.RowId;
                 }
+
                 ImGui.EndCombo();
             }
 

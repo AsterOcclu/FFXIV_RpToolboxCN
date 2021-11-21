@@ -18,34 +18,34 @@ namespace RoleplayersToolbox.Tools.Housing {
                 new Regex(@"\blav\s?b\b", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"ラベンダーベッド", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"薰衣草", RegexOptions.Compiled | RegexOptions.IgnoreCase),
-                new Regex(@"森都\s*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
-                new Regex(@"森\s*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"森都[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"森[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
             },
             [HousingArea.Goblet] = new[] {
                 new Regex(@"\bgoblet\b", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"\bgob\b", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"ゴブレットビュート", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"高脚孤丘", RegexOptions.Compiled | RegexOptions.IgnoreCase),
-                new Regex(@"沙都\s*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
-                new Regex(@"沙\s*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"沙都[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"沙[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
             },
             [HousingArea.Mist] = new[] {
                 new Regex(@"\bmist\b", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"\bmists\b", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"ミスト", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"海雾村", RegexOptions.Compiled | RegexOptions.IgnoreCase),
-                new Regex(@"海都\s*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
-                new Regex(@"海\s*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
-                new Regex(@"水都\s*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
-                new Regex(@"水\s*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"海都[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"海[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"水都[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"水[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
             },
             [HousingArea.Shirogane] = new[] {
                 new Regex(@"\bshirogane\b", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"\bshiro\b", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"シロガネ", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"白银乡", RegexOptions.Compiled | RegexOptions.IgnoreCase),
-                new Regex(@"白银\s*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
-                new Regex(@"白\s*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"白银[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"白[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
             },
         };
 
@@ -71,7 +71,7 @@ namespace RoleplayersToolbox.Tools.Housing {
         private static readonly Regex NonWord = new(@"\W", RegexOptions.Compiled);
 
         private static World? FindWorld(string source, uint dataCentre, DataManager data) {
-            var worlds = ExtraWorld.GetAllWorldsByDcRow(dataCentre, data);
+            var worlds = Utils4CN.ChineseServers.GetAllWorldsByDcRow(dataCentre, data);
             foreach (var w in worlds)
             {
                 var wName = w.Name.ToString();

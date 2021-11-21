@@ -74,6 +74,8 @@ namespace RoleplayersToolbox {
             this.Ui = new PluginUi(this);
 
             this.Commands = new Commands(this);
+
+            (new Utils4CN.Init(this.Interface)).ReplaceDataIfCN();
         }
 
         public void Dispose() {
