@@ -104,7 +104,7 @@ namespace Utils4CN
 
         internal static Dictionary<uint, DataCenter> DataCenterMap = new Dictionary<uint, DataCenter>{
             {1, new DataCenter {Id = 1, Name = "LuXingNiao", WorldIds = new uint[]{ 1167, 1081, 1042, 1044, 1060, 1173, 1174, 1175 }}},
-            {2, new DataCenter {Id = 2, Name = "MoGuLi", WorldIds = new uint[]{ 1172, 1076, 1171, 1170, 1113, 1121, 1166, 1176 }}},
+            {2, new DataCenter {Id = 2, Name = "MoGuLi", WorldIds = new uint[]{ 1076, 1171, 1170, 1113, 1121, 1166, 1176, 1172 }}},
             {3, new DataCenter {Id = 3, Name = "MaoXiaoPang", WorldIds = new uint[]{ 1043, 1169, 1106, 1045, 1177, 1178, 1179 }}},
         };
 
