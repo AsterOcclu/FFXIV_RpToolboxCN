@@ -5,13 +5,14 @@ using Dalamud.Game;
 using Dalamud.Game.Command;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
+using Dalamud.Logging;
 using FFXIVClientStructs.FFXIV.Client.UI;
 using FFXIVClientStructs.FFXIV.Client.UI.Agent;
 using FFXIVClientStructs.FFXIV.Component.GUI;
+using ClientFramework = FFXIVClientStructs.FFXIV.Client.System.Framework;
 using ImGuiNET;
 using Lumina.Excel.GeneratedSheets;
 using XivCommon.Functions.ContextMenu;
-using Dalamud.Logging;
 
 
 namespace RoleplayersToolbox.Tools.Housing {
@@ -123,7 +124,7 @@ namespace RoleplayersToolbox.Tools.Housing {
 
             var world = this.Destination.World;
             if (ImGui.BeginCombo("服务器", world?.Name?.ToString() ?? string.Empty)) {
-                var dataCentre = this.Plugin.ClientState.LocalPlayer?.HomeWorld.GameData.DataCenter?.Row;
+                var dataCentre = this.Plugin.ClientState.LocalPlayer?.HomeWorld.GameData!.DataCenter?.Row;
 
                 foreach (var availWorld in this.Plugin.DataManager.GetExcelSheet<World>()!) {
                     if (availWorld.DataCenter.Row != dataCentre || !availWorld.IsPublic) {
@@ -154,7 +155,6 @@ namespace RoleplayersToolbox.Tools.Housing {
 
                 ImGui.EndCombo();
             }
-
             var ward = (int) (this.Destination.Ward ?? 0);
             if (ImGui.InputInt("区", ref ward)) {
                 this.Destination.Ward = (uint) Math.Max(1, Math.Min(24, ward));
@@ -198,7 +198,7 @@ namespace RoleplayersToolbox.Tools.Housing {
                 return;
             }
 
-            this.Destination = InfoExtractor.Extract(arguments, player.HomeWorld.GameData.DataCenter.Row, this.Plugin.DataManager, this.Info);
+            this.Destination = InfoExtractor.Extract(arguments, player.HomeWorld.GameData!.DataCenter.Row, this.Plugin.DataManager, this.Info);
         }
 
         private void OnBookmarksCommand(string command, string arguments) {
@@ -252,6 +252,7 @@ namespace RoleplayersToolbox.Tools.Housing {
             this.HighlightSelectString();
             this.HighlightResidentialTeleport();
             this.HighlightWorldTravel();
+            this.HighClosestAethernet();
         }
 
         private void ClearIfNear() {
@@ -309,7 +310,7 @@ namespace RoleplayersToolbox.Tools.Housing {
         }
 
         private unsafe void ClearFlag() {
-            var mapAgent = (IntPtr) this.Plugin.Common.Functions.GetFramework()->GetUiModule()->GetAgentModule()->GetAgentByInternalId(AgentId.Map);
+            var mapAgent = (IntPtr) ClientFramework.Framework.Instance()->GetUiModule()->GetAgentModule()->GetAgentByInternalId(AgentId.Map);
             if (mapAgent != IntPtr.Zero) {
                 *(byte*) (mapAgent + AgentMapFlagSetOffset) = 0;
             }
@@ -412,12 +413,59 @@ namespace RoleplayersToolbox.Tools.Housing {
             }
 
             var select = (AddonSelectString*) addon;
-            var list = select->PopupMenu.List;
+            var list = select->PopupMenu.PopupMenu.List;
             if (list == null) {
                 return;
             }
 
             this.HighlightSelectStringItems(list);
+        }
+
+
+        private unsafe void HighClosestAethernet() {
+            var placeName = this.Destination?.ClosestAethernet?.PlaceName?.Value?.Name?.ToString();
+            if (placeName == null) {
+                return;
+            }
+            if (this.Plugin.Common.Functions.Housing.Location?.Ward != this.Destination?.Ward) {
+                return;
+            }
+            if (this.Destination?.World == null || this.Destination?.World != this.Plugin.ClientState.LocalPlayer?.CurrentWorld.GameData) {
+                return;
+            }
+
+            var addon = this.Plugin.GameGui.GetAddonByName("TelepotTown", 1);
+            if (addon == IntPtr.Zero) {
+                return;
+            }
+
+            var unit = (AtkUnitBase*) addon;
+            var root = unit->RootNode;
+            if (root == null) {
+                return;
+            }
+
+            var windowComponent = (AtkComponentNode*) root->ChildNode;
+            var mapWindow = windowComponent->AtkResNode.PrevSiblingNode;
+            var listWindow = mapWindow->PrevSiblingNode;
+            var treeList = (AtkComponentNode*) listWindow->ChildNode;
+            var listChild = treeList->Component->UldManager.RootNode;
+
+            var prev = listChild;
+            if (prev == null) {
+                return;
+            }
+
+            do {
+                if ((uint) prev->Type != 1020) {
+                    continue;
+                }
+                var first = ((AtkComponentNode*) prev)->Component->UldManager.RootNode;
+                var textNode = (AtkTextNode*) first->PrevSiblingNode->PrevSiblingNode->PrevSiblingNode;
+                HighlightIf(&textNode->AtkResNode, textNode->NodeText.ToString() == placeName);
+            } while ((prev = prev->PrevSiblingNode) != null);
+
+            return;
         }
 
         private bool ShouldHighlight(SeString str) {
@@ -426,14 +474,6 @@ namespace RoleplayersToolbox.Tools.Housing {
             var sameWorld = this.Destination?.World == this.Plugin.ClientState.LocalPlayer?.CurrentWorld.GameData;
             if (!sameWorld && this.Destination?.World != null) {
                 return text == " 跨界传送";
-            }
-
-            // TODO: figure out how to use HousingAethernet.Order with current one missing
-            var placeName = this.Destination?.ClosestAethernet?.PlaceName?.Value?.Name?.ToString();
-            var currentWard = this.Plugin.Common.Functions.Housing.Location?.Ward;
-
-            if (currentWard == this.Destination?.Ward && placeName != null && text.StartsWith(placeName) && text.Length - placeName.Length <= 1) {
-                return true;
             }
 
             // ReSharper disable once InvertIf

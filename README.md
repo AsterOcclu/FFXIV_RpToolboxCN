@@ -2,16 +2,15 @@
 
 Fork from: https://git.sr.ht/~jkcclemens/RoleplayersToolbox
 
-## A collection of useful tools for roleplayers.
+## 为Roleplay玩家制作的工具集。
 
-  - Choose a PF or use the /go command to set a destination and get
-    told the fastest way to navigate to any house.
-  - Enable click-to-examine on left or right click.
-  - Prevent untargeting or changing your target.
-  - Set any emote on your hotbar, such as sleep or object sit.
-  - Add the /emoteid command to use any emote by its ID.
-  - Disable the /doze emote snap so you can use the sleep emote
-    anywhere.
+  - 新增支持6.0的城镇内传送水晶界面。
+  - 在招募板的店面信息上右键，或使用 /go 命令可以设定目的地，且获得最近的传送路径与导航提示信息。
+  - 允许左键或右键单击快速查看玩家信息。
+  - 可以锁定当前目标，防止情感动作或者宏因丢失目标被错误使用。
+  - 可以把任何『已解锁』的情感动作放置在热键栏，比如『睡大街』『椅子坐』。
+  - 提供 /emoteid 命令执行任意『已解锁』的情感动作。
+  - 可以阻止在床边使用 /打盹 命令时自动入睡（只瞌睡、不躺下）。
 
 ## Install
 

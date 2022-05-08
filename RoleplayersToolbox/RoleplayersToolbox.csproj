@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net5-windows</TargetFramework>
-        <Version>0.3.2.3</Version>
+        <Version>0.3.4.0</Version>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -29,7 +29,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <DalamudLibPath>$(AppData)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
+        <DalamudLibPath>C:\Games\Dalamud.Updater\6.3.0.9\</DalamudLibPath>
     </PropertyGroup>
 
     <ItemGroup>
@@ -59,8 +59,8 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="DalamudPackager" Version="2.1.4"/>
+        <PackageReference Include="DalamudPackager" Version="2.1.6"/>
         <PackageReference Include="F23.StringSimilarity" Version="4.1.0"/>
-        <PackageReference Include="XivCommon" Version="3.2.0"/>
+        <PackageReference Include="XivCommon" Version="4.0.0"/>
     </ItemGroup>
 </Project>
