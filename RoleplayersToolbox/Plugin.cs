@@ -75,7 +75,7 @@ namespace RoleplayersToolbox {
 
             this.Commands = new Commands(this);
 
-            (new Utils4CN.Init(this.Interface)).ReplaceDataIfCN();
+            new Utils4CN.Init(this.Interface).ReplaceDataIfCN();
         }
 
         public void Dispose() {
