@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net5-windows</TargetFramework>
-        <Version>0.3.4.1</Version>
+        <Version>0.3.4.2</Version>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -29,7 +29,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <DalamudLibPath>C:\Games\Dalamud.Updater\6.3.0.9\</DalamudLibPath>
+        <DalamudLibPath>C:\Games\Dalamud.Updater\addon\Hooks\dev\</DalamudLibPath>
     </PropertyGroup>
 
     <ItemGroup>

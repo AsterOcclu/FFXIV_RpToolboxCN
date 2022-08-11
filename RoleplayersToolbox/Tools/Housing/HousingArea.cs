@@ -8,6 +8,7 @@ namespace RoleplayersToolbox.Tools.Housing {
         LavenderBeds = 340,
         Goblet = 341,
         Shirogane = 641,
+        Empyreum = 979,
     }
 
     internal static class HousingAreaExtensions {
@@ -16,6 +17,7 @@ namespace RoleplayersToolbox.Tools.Housing {
             HousingArea.LavenderBeds => "薰衣草苗圃",
             HousingArea.Goblet => "高脚孤丘",
             HousingArea.Shirogane => "白银乡",
+            HousingArea.Empyreum => "穹顶皓天",
             _ => throw new ArgumentOutOfRangeException(nameof(area), area, null),
         };
 
@@ -24,6 +26,7 @@ namespace RoleplayersToolbox.Tools.Housing {
             HousingArea.LavenderBeds => 132,
             HousingArea.Goblet => 130,
             HousingArea.Shirogane => 628,
+            HousingArea.Empyreum => 418,
             _ => throw new ArgumentOutOfRangeException(nameof(area), area, null),
         };
 

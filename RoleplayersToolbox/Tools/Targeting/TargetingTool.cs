@@ -24,7 +24,7 @@ namespace RoleplayersToolbox.Tools.Targeting {
 
             if (this.Plugin.SigScanner.TryScanText(Signatures.LeftClickTarget, out var leftClickPtr)) {
                 unsafe {
-                    this.LeftClickHook = new Hook<ClickTargetDelegate>(leftClickPtr, this.LeftClickDetour);
+                    this.LeftClickHook = Hook<ClickTargetDelegate>.FromAddress(leftClickPtr, this.LeftClickDetour);
                 }
 
                 this.LeftClickHook.Enable();
@@ -32,7 +32,7 @@ namespace RoleplayersToolbox.Tools.Targeting {
 
             if (this.Plugin.SigScanner.TryScanText(Signatures.RightClickTarget, out var rightClickPtr)) {
                 unsafe {
-                    this.RightClickHook = new Hook<ClickTargetDelegate>(rightClickPtr, this.RightClickDetour);
+                    this.RightClickHook = Hook<ClickTargetDelegate>.FromAddress(rightClickPtr, this.RightClickDetour);
                 }
 
                 this.RightClickHook.Enable();

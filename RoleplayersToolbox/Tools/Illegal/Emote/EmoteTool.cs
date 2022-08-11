@@ -33,11 +33,11 @@ namespace RoleplayersToolbox.Tools.Illegal.Emote {
             this.Plugin = plugin;
 
             this.Plugin.CommandManager.AddHandler("/emoteid", new CommandInfo(this.EmoteIdCommand) {
-                HelpMessage = "根据emoteid，执行已解锁的表情",
+                HelpMessage = "根据emoteid, 执行已解锁的表情",
             });
 
             if (this.Plugin.SigScanner.TryScanText(Signatures.SetActionOnHotbar, out var setPtr)) {
-                this.SetActionOnHotbarHook = new Hook<SetActionOnHotbarDelegate>(setPtr, this.SetActionOnHotbarDetour);
+                this.SetActionOnHotbarHook = Hook<SetActionOnHotbarDelegate>.FromAddress(setPtr, this.SetActionOnHotbarDetour);
                 this.SetActionOnHotbarHook.Enable();
             }
 

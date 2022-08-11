@@ -25,6 +25,7 @@ namespace RoleplayersToolbox.Tools.Housing {
                 new Regex(@"\bgoblet\b", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"\bgob\b", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"ゴブレットビュート", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"ゴブ", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"高脚孤丘", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"沙都[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"沙[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
@@ -46,6 +47,16 @@ namespace RoleplayersToolbox.Tools.Housing {
                 new Regex(@"白银乡", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"白银[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
                 new Regex(@"白[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+            },
+            [HousingArea.Empyreum] = new[] {
+                new Regex(@"\bempyreum\b", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"\bempy\b", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"エンピ", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"穹顶皓天", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"穹顶[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"穹[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"雪都[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
+                new Regex(@"雪[\s\W]*\d", RegexOptions.Compiled | RegexOptions.IgnoreCase),
             },
         };
 

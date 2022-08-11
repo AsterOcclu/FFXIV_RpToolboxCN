@@ -24,7 +24,7 @@ namespace RoleplayersToolbox.Tools.Illegal.EmoteSnap {
             this.Config = this.Plugin.Config.Tools.EmoteSnap;
 
             if (this.Plugin.SigScanner.TryScanText(Signatures.ShouldSnap, out var snapPtr)) {
-                this.ShouldSnapHook = new Hook<ShouldSnapDelegate>(snapPtr, this.ShouldSnapDetour);
+                this.ShouldSnapHook = Hook<ShouldSnapDelegate>.FromAddress(snapPtr, this.ShouldSnapDetour);
                 this.ShouldSnapHook.Enable();
             }
 
