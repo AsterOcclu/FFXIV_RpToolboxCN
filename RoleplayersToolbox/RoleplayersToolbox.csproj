@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net5-windows</TargetFramework>
-        <Version>0.3.4.2</Version>
+        <TargetFramework>net6.0-windows7.0</TargetFramework>
+        <Version>0.3.4.3</Version>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -59,7 +59,7 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="DalamudPackager" Version="2.1.6"/>
+        <PackageReference Include="DalamudPackager" Version="2.1.8"/>
         <PackageReference Include="F23.StringSimilarity" Version="4.1.0"/>
         <PackageReference Include="XivCommon" Version="4.0.0"/>
     </ItemGroup>

@@ -154,7 +154,7 @@ namespace RoleplayersToolbox.Tools.Housing {
             var world = bookmark.WorldId == 0
                 ? null
                 : this.Plugin.DataManager.GetExcelSheet<World>()!.GetRow(bookmark.WorldId);
-            if (ImGui.BeginCombo("服务器", world?.Name?.ToString() ?? string.Empty)) {
+            if (ImGui.BeginCombo("服务器", world?.Name.ToString() ?? string.Empty)) {
                 var dataCentre = this.Plugin.ClientState.LocalPlayer?.HomeWorld?.GameData?.DataCenter?.Row;
 
                 foreach (var availWorld in this.Plugin.DataManager.GetExcelSheet<World>()!) {

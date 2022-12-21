@@ -1,6 +1,6 @@
 name: The Roleplayer's Toolbox
 author: ascclemens
-# dalamud_api_level: 6
+punchline: 专为Roleplay玩家制作的工具集。
 description: |-
   专为Roleplay玩家制作的工具集。
 
@@ -13,4 +13,4 @@ description: |-
   - 可以阻止在床边使用 /打盹 命令时自动入睡（只瞌睡、不躺下）。
 
 repo_url: https://github.com/AsterOcclu/FFXIV_RpToolboxCN
-changelog: "- 0.3.4.2: 新增支持6.1住宅区穹顶皓天。"
+changelog: "- 0.3.4.3: 新增支持国服6.2卫月API7"
